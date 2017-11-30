@@ -260,7 +260,7 @@ FullSynapse t1,t2;
    * @param e The JOONE event
    */
   public void netStopped(NeuralNetEvent e) {
-	  saveNeuralNet("/Users/MingSun/heart.snet");
+	  saveNeuralNet(System.getProperty("webapp")+"heart.snet");
   }
 
   /**

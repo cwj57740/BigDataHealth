@@ -238,7 +238,7 @@ FullSynapse t1,t2;
    * @param e The JOONE event
    */
   public void netStopped(NeuralNetEvent e) {
-	  saveNeuralNet("/Users/MingSun/kidney.snet"); //
+	  saveNeuralNet(System.getProperty("webapp")+"kidney.snet"); //
   }
 
   /**
