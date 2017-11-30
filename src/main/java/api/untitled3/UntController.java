@@ -1,5 +1,6 @@
 package api.untitled3;
 
+import com.alibaba.fastjson.JSON;
 import org.apache.commons.io.FileUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,8 @@ import untitled3.XorExample;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/untitled3")
@@ -34,16 +37,21 @@ public class UntController {
             int inputsize=Integer.valueOf(req.getParameter("sr"));
 
             String res=null;
+            Map<String,String> result = new HashMap<String,String>();
+
 
             if(inputsize==13) {
-
-                res = XorExample.circle +" " +"Global error:"+ XorExample.globalerror*100+"%";
+                result.put("circle",Long.toString(XorExample.circle));
+                result.put("error",Double.toString(XorExample.globalerror*100));
+//                res = XorExample.circle +" " +"Global error:"+ XorExample.globalerror*100+"%";
             }
             else {
-                res =" " + Kidney.circle +" " +"Global error:"+ Kidney.globalerror*100+"%";;
+                result.put("circle",Long.toString(Kidney.circle));
+                result.put("error",Double.toString(Kidney.globalerror*100));
+//                res =" " + Kidney.circle +" " +"Global error:"+ Kidney.globalerror*100+"%";;
             }
 
-            return res;
+            return JSON.toJSONString(result);
         }catch (Exception e){
             e.printStackTrace();
         }
