@@ -31,7 +31,7 @@ public class UntController {
         System.out.println("in init");
     }
 
-    @RequestMapping(path = "/dong", method = RequestMethod.POST)
+    @RequestMapping("/dong")
     public String dong(HttpServletRequest req, HttpServletResponse resp) {
         try {
             int inputsize=Integer.valueOf(req.getParameter("sr"));
