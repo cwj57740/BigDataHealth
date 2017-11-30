@@ -2,6 +2,7 @@ package api.untitled3;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,7 +28,7 @@ public class UntController {
         System.out.println("in init");
     }
 
-    @RequestMapping("/dong")
+    @RequestMapping(path = "/dong", method = RequestMethod.POST)
     public String dong(HttpServletRequest req, HttpServletResponse resp) {
         try {
             int inputsize=Integer.valueOf(req.getParameter("sr"));
@@ -49,7 +50,7 @@ public class UntController {
         return "failed";
     }
 
-    @RequestMapping("/helloworld")
+    @RequestMapping(path = "/helloworld", method = RequestMethod.POST)
     public String helloWorld(@RequestParam("file1") MultipartFile file1,@RequestParam("file2") MultipartFile file2, HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try {
             File targetFile1 = saveFile(file1);
@@ -84,7 +85,7 @@ public class UntController {
     }
 
 
-    @RequestMapping("/page")
+    @RequestMapping(path = "/page", method = RequestMethod.POST)
     public String page(@RequestParam("file1") MultipartFile file1,@RequestParam("file2") MultipartFile file2,HttpServletRequest req, HttpServletResponse resp) throws IOException{
         try{
             File targetFile1 = saveFile(file1);
@@ -273,7 +274,7 @@ public class UntController {
         return "failed";
     }
 
-    @RequestMapping("/predict")
+    @RequestMapping(path = "/predict", method = RequestMethod.POST)
     public String predict(@RequestParam("file1") MultipartFile file1,@RequestParam("file2") MultipartFile file2,HttpServletRequest req, HttpServletResponse resp) throws IOException{
 
         try{
@@ -394,7 +395,7 @@ public class UntController {
         return "failed";
     }
 
-    @RequestMapping("/check")
+    @RequestMapping(path = "/check", method = RequestMethod.POST)
     public String check(@RequestParam("file2") MultipartFile file2, HttpServletRequest req, HttpServletResponse resp) throws IOException{
 
         try{
