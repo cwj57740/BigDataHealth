@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
 @RestController
-@RequestMapping()
+@RequestMapping("/untitled3")
 public class UntController {
     private String message;
     private XorExample xorExample;
@@ -49,7 +49,7 @@ public class UntController {
         return "failed";
     }
 
-    @RequestMapping("helloworld")
+    @RequestMapping("/helloworld")
     public String helloWorld(@RequestParam("file1") MultipartFile file1,@RequestParam("file2") MultipartFile file2, HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try {
             File targetFile1 = saveFile(file1);
@@ -84,6 +84,7 @@ public class UntController {
     }
 
 
+    @RequestMapping("/page")
     public String page(@RequestParam("file1") MultipartFile file1,@RequestParam("file2") MultipartFile file2,HttpServletRequest req, HttpServletResponse resp) throws IOException{
         try{
             File targetFile1 = saveFile(file1);
@@ -272,6 +273,7 @@ public class UntController {
         return "failed";
     }
 
+    @RequestMapping("/predict")
     public String predict(@RequestParam("file1") MultipartFile file1,@RequestParam("file2") MultipartFile file2,HttpServletRequest req, HttpServletResponse resp) throws IOException{
 
         try{
@@ -392,6 +394,7 @@ public class UntController {
         return "failed";
     }
 
+    @RequestMapping("/check")
     public String check(@RequestParam("file2") MultipartFile file2, HttpServletRequest req, HttpServletResponse resp) throws IOException{
 
         try{
