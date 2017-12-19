@@ -1,39 +1,64 @@
 package preview;
 
+import java.util.Scanner;
 public class Test {
-	
-	static double [][] a= {
-			{0.9999846, 0.0000031, 0.0000002, 0.0000023, 0.0000098},
-			{0.0000036, 0.9999789, 0.0000034, 0.0000075, 0.0000066},
-			{0.0000077, 0.0000007, 0.9999829, 0.0000054, 0.0000033},
-			{0.0000045, 0.0000092, 0.0000043, 0.9999795, 0.0000025},
-			{0.0000098, 0.0000055, 0.0000012, 0.0000027, 0.9999808}
-	};
-	static double [] b={100000000,100000000,100000000,100000000,100000000};
-	
+
+	static double [][] a;
+	static double [] b;
+	static double [] s;
+
 	public static void main(String[] args) {
-		
-		
+
+
 		BP u= new BP(32, 15, 1);
 		double std_input[]=new double[32];
 		double std_output[]=new double[1];
 		u.train(std_input, std_output);
 		double input[]=new double[32];
 		double[] result=u.test(input);
-		
+
 	/*SIR s=new SIR();
 	//	s.init(1-result[0], result[0], 0);
 		s.show();
 	//	s.UpdateToTime(13);
 		s.show();*/
-		
-		Network c=new Network(b, a, 5);
+
+		Scanner cin=new Scanner(System.in);
+		System.out.println("input city number:");
+
+		int city_number = cin.nextInt();
+		a = new double[city_number][city_number];
+		b = new double[city_number];
+		s = new double[city_number];
+
+		System.out.println("input the matrix of population transportation:");
+		for (int i=0;i<city_number;i++){
+			for (int j=0;j<city_number;j++){
+				a[i][j] = cin.nextDouble();
+			}
+		}
+
+		System.out.println("input the initial population of each city:");
+		for (int i=0;i<city_number;i++){
+			b[i] = cin.nextDouble();
+		}
+
+		System.out.println("input the initial prevalence of each city:");
+
+		for (int i=0;i<city_number;i++) {
+			s[i] = cin.nextDouble();
+		}
+
+		System.out.println("input the time interval:");
+
+		int t = cin.nextInt();
+
+		Network c=new Network(b, a, city_number);
 		c.output();
-		c.UpdateFor(0.001);
-		//���
-		c.output();
-		c.infect(0, 1e-6);
-		for (int i=0;i<=20;i++){
+		for (int i=0;i<city_number;i++)
+			c.infect(i, s[i]);
+
+		for (int i=0;i<t;i++){
 			c.UpdateFor(1);
 			c.output();
 		}

@@ -1,9 +1,23 @@
 package preview;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Network {
 	private int num;
 	private double cur_time;
+
+	public double getCur_time() {
+		return cur_time;
+	}
+
+	public void setCur_time(double cur_time) {
+		this.cur_time = cur_time;
+	}
+
 	static double dt=0.001;
 	private City[] city;
 	private double[][] tran;
@@ -50,8 +64,19 @@ public class Network {
 		System.out.printf("current time is : %.0f\n",cur_time);
 		for (int i=0;i<num;i++){
 			System.out.print("City "+i+": ");
-			System.out.printf("%.0f %.0f %.0f\n",city[i].get()[0],city[i].get()[1],city[i].get()[2]);
+			System.out.printf("S: %.0f I: %.0f R: %.0f\n",city[i].get()[0],city[i].get()[1],city[i].get()[2]);
 		}
+	}
+	public Map<String,Map> getResult(){
+		Map<String,Map> resultMap = new HashMap<>();
+		for (int i=0;i<num;i++){
+			Map<String,String> map = new HashMap<>();
+			map.put("S",Double.toString(city[i].get()[0]));
+			map.put("I",Double.toString(city[i].get()[1]));
+			map.put("R",Double.toString(city[i].get()[2]));
+			resultMap.put(Integer.toString(i),map);
+		}
+		return resultMap;
 	}
 }
 

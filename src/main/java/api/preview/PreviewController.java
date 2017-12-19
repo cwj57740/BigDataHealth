@@ -26,6 +26,7 @@ public class PreviewController {
             b = new double[city_number];
             s = new double[city_number];
             int t = Integer.parseInt(request.getParameter("time"));
+            System.out.println("t:"+t);
             List<Double[]> matrix = JSON.parseArray(request.getParameter("matrix"),Double[].class);
             List<Double> populations = JSON.parseArray(request.getParameter("population"),Double.class);
             List<Double> prevalence = JSON.parseArray(request.getParameter("prevalence"), Double.class);
@@ -48,17 +49,23 @@ public class PreviewController {
                 System.out.println("s["+n+"]="+s[n]);
             }
 
-//        Network c = new Network(b, a, city_number);
-//        Map<String, Map> resultMap = new HashMap<>();
-//        Map<String, Map> map = c.getResult();
-//        Map<String,Map> cur_timeMap = new HashMap<>();
-//        for (int i=0;i<city_number;i++)
-//            c.infect(i, s[i]);
-//
-//        for (int i=0;i<t;i++){
-//            c.UpdateFor(1);
-//            map = c.getResult();
-//        }
+        Network c = new Network(b, a, city_number);
+        Map<String, Map> resultMap = new HashMap<>();
+        Map<String, Map> map = c.getResult();
+        resultMap.put("result"+"0",map);
+        Map<String,String> cur_timeMap = new HashMap<>();
+        cur_timeMap.put("0",Double.toString(c.getCur_time()));
+        for (int x=0;x<city_number;x++)
+            c.infect(x, s[x]);
+
+        for (int x=0;x<t;x++){
+            c.UpdateFor(1);
+            map = c.getResult();
+            resultMap.put("result"+(x+1),map);
+            cur_timeMap.put(Integer.toString(x+1),Double.toString(c.getCur_time()));
+        }
+        resultMap.put("cur_timeList",cur_timeMap);
+        return JSON.toJSONString(resultMap);
         }catch (Exception e){
             e.printStackTrace();
         }
