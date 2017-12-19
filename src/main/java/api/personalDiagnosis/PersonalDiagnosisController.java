@@ -92,7 +92,7 @@ public class PersonalDiagnosisController {
         try {
             Connection conn = ml.getConnection();
             String patient_id = request.getParameter("patient_id");
-            String disease_id = request.getParameter("disease_id");
+            String disease_id = "5";
             double range=15;
             evaluater ev=new evaluater();
             ArrayList<Map.Entry<Integer, Double>>  CFScoreMap=new ArrayList<>();
