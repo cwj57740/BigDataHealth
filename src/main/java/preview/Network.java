@@ -74,7 +74,7 @@ public class Network {
 			map.put("S",Double.toString(city[i].get()[0]));
 			map.put("I",Double.toString(city[i].get()[1]));
 			map.put("R",Double.toString(city[i].get()[2]));
-			resultMap.put(Integer.toString(i),map);
+			resultMap.put("city"+Integer.toString(i),map);
 		}
 		return resultMap;
 	}
