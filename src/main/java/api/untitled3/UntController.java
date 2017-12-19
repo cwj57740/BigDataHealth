@@ -37,17 +37,17 @@ public class UntController {
             int inputsize=Integer.valueOf(req.getParameter("sr"));
 
             String res=null;
-            Map<String,String> result = new HashMap<String,String>();
+            Map<String,String> result = null;
 
 
             if(inputsize==13) {
                 result.put("circle",Long.toString(XorExample.circle));
-                result.put("error",Double.toString(XorExample.globalerror*100));
+                result.put("error",Double.toString(XorExample.globalerror));
 //                res = XorExample.circle +" " +"Global error:"+ XorExample.globalerror*100+"%";
             }
             else {
                 result.put("circle",Long.toString(Kidney.circle));
-                result.put("error",Double.toString(Kidney.globalerror*100));
+                result.put("error",Double.toString(Kidney.globalerror));
 //                res =" " + Kidney.circle +" " +"Global error:"+ Kidney.globalerror*100+"%";;
             }
 
