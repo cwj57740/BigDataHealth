@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -98,12 +99,16 @@ public class PersonalDiagnosisController {
             ArrayList<Map.Entry<Integer, Double>>  CFScoreMap=new ArrayList<>();
             CFScoreMap=ev.CFEvaluator(Integer.parseInt(patient_id),Integer.parseInt(disease_id), range, conn);
 
-            Map<String,String> map = new HashMap<>();
+            List<Map> resultList = new ArrayList<>();
             for(int index=0;index<CFScoreMap.size();++index){
-                map.put(CFScoreMap.get(index).getKey().toString(),CFScoreMap.get(index).getValue().toString());
+                Map<String,String> map = new HashMap<>();
+                map.put("index",CFScoreMap.get(index).getKey().toString());
+                map.put("score",CFScoreMap.get(index).getValue().toString());
+                map.put("name",Util.getHospitalName(conn,CFScoreMap.get(index).getKey()));
                 System.out.println("Ò½Ôº±àºÅ:"+CFScoreMap.get(index).getKey()+";ÆÀ·Ö:"+CFScoreMap.get(index).getValue());
+                resultList.add(map);
             }
-            return JSON.toJSONString(map);
+            return JSON.toJSONString(resultList);
         } catch (Exception e){
             e.printStackTrace();
             return "failed";
