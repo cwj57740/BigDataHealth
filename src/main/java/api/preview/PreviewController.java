@@ -44,7 +44,7 @@ public class PreviewController {
                 b[n] = populations.get(n);
                 System.out.println("b["+n+"]="+b[n]);
             }
-            for(int n = 0;i<prevalence.size();n++){
+            for(int n = 0;n<city_number;n++){
                 s[n] = prevalence.get(n);
                 System.out.println("s["+n+"]="+s[n]);
             }
