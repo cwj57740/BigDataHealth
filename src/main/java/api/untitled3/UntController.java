@@ -36,8 +36,7 @@ public class UntController {
         try {
             int inputsize=Integer.valueOf(req.getParameter("sr"));
 
-            String res=null;
-            Map<String,String> result = null;
+            Map<String,String> result = new HashMap<>();
 
 
             if(inputsize==13) {
