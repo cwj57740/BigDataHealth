@@ -217,7 +217,7 @@ public class UntController {
 
             String kres = null;
 
-            if(targetFile2.getName().equals("kidney.snet")){
+            if(targetFile2.getName().equals("new.txt")){
                 //System.out.println("here~~~");
                 //ÒªÓÃ±´Ò¶Ë¹ÍøÂç
                 try {
