@@ -217,7 +217,7 @@ public class UntController {
 
             String kres = null;
 
-            if(targetFile2.getName().equals("new.txt")){
+            if(targetFile2.getName().equals("kidney.snet")){
                 //System.out.println("here~~~");
                 //ÒªÓÃ±´Ò¶Ë¹ÍøÂç
                 try {
@@ -274,7 +274,7 @@ public class UntController {
                 else { kres="may not suffer chronic kidney disease";      }
             }
 
-            return kres;
+            return hres+kres;
         }catch (Exception e){
             e.printStackTrace();
         }
