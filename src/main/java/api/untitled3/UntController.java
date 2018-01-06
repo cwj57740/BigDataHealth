@@ -274,7 +274,7 @@ public class UntController {
                 else { kres="may not suffer chronic kidney disease";      }
             }
 
-            return hres+kres;
+            return hres+";"+kres;
         }catch (Exception e){
             e.printStackTrace();
         }
