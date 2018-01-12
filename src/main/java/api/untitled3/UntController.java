@@ -38,19 +38,21 @@ public class UntController {
 
             Map<String,String> result = new HashMap<>();
 
-
-            if(inputsize==13) {
-                result.put("circle",Long.toString(XorExample.circle));
-                result.put("error",Double.toString(XorExample.globalerror));
+            synchronized (UntController.class){
+                if(inputsize==13) {
+                    result.put("circle",Long.toString(XorExample.circle));
+                    result.put("error",Double.toString(XorExample.globalerror));
 //                res = XorExample.circle +" " +"Global error:"+ XorExample.globalerror*100+"%";
-            }
-            else {
-                result.put("circle",Long.toString(Kidney.circle));
-                result.put("error",Double.toString(Kidney.globalerror));
+                }
+                else {
+                    result.put("circle",Long.toString(Kidney.circle));
+                    result.put("error",Double.toString(Kidney.globalerror));
 //                res =" " + Kidney.circle +" " +"Global error:"+ Kidney.globalerror*100+"%";;
+                }
+
+                return JSON.toJSONString(result);
             }
 
-            return JSON.toJSONString(result);
         }catch (Exception e){
             e.printStackTrace();
         }
